@@ -2,39 +2,37 @@ name: Go
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
-    
-    - name: Install depends
-      run: |
-        sudo apt install gcc libc6-dev
-        sudo apt install libx11-dev xorg-dev libxtst-dev
-        sudo apt install libpng++-dev
-        sudo apt install xcb libxcb-xkb-dev x11-xkb-utils libx11-xcb-dev libxkbcommon-x11-dev libxkbcommon-dev
-        sudo apt install xsel xclip
-        
-    - uses: actions/checkout@v3
+      - name: Install depends
+        run: |
+          sudo apt install gcc libc6-dev
+          sudo apt install libx11-dev xorg-dev libxtst-dev
+          sudo apt install libpng++-dev
+          sudo apt install xcb libxcb-xkb-dev x11-xkb-utils libx11-xcb-dev libxkbcommon-x11-dev libxkbcommon-dev
+          sudo apt install xsel xclip
 
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.18
+      - uses: actions/checkout@v3
 
-    - name: Build
-      run: go build -v ./...
-      
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: wxwork-browser-killer
-        path: ./
-        
-    - name: Test
-      run: go test -v ./...
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: wxwork-browser-killer
+          path: ./wxwork-browser-killer
+
+      - name: Test
+        run: go test -v ./...

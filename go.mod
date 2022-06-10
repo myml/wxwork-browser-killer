@@ -1,4 +1,4 @@
-module a
+module github.com/myml/wxwork-browser-killer
 
 go 1.18
 
