@@ -15,6 +15,12 @@ jobs:
       -
         name: Set up Go
         uses: actions/setup-go@v3
+      - name: Install depends
+        run: |
+          sudo apt install gcc libc6-dev
+          sudo apt install libx11-dev xorg-dev libxtst-dev
+          sudo apt install libpng++-dev
+          sudo apt install xcb libxcb-xkb-dev x11-xkb-utils libx11-xcb-dev libxkbcommon-x11-dev libxkbcommon-dev
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v3
