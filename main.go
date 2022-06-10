@@ -33,10 +33,11 @@ func main() {
 	loading := bitmap.Open(filepath.Join(dir, "load.bmp"))
 	for {
 		time.Sleep(time.Second)
-		fx, fy := bitmap.Find(open)
+		screen := robotgo.CaptureScreen()
+		fx, fy := bitmap.Find(open, screen)
 		fmt.Println("FindBitmap------ ", fx, fy)
 		if fx >= 0 && fy >= 0 {
-			lx, ly := bitmap.Find(loading)
+			lx, ly := bitmap.Find(loading, screen)
 			if lx >= 0 || ly >= 0 {
 				continue
 			}
